@@ -200,7 +200,7 @@ CREATE PROCEDURE PROC_UPDATESUBJECT(
 BEGIN
     UPDATE subject
     SET subjectName = newSubjectName
-    WHERE subjectTd = subjectId;
+    WHERE subjectId = subjectId;
 END//
 DELIMITER ;
 
@@ -212,8 +212,8 @@ CREATE PROCEDURE PROC_DELETEMARK(
 )
 BEGIN
     DECLARE count_deleted INT DEFAULT 0;
-    WHILE (EXISTS (SELECT 1 FROM mark WHERE studentTd = studentId)) DO
-        DELETE FROM mark WHERE studentTd = studentId;
+    WHILE (EXISTS (SELECT 1 FROM mark WHERE studentId = studentId)) DO
+        DELETE FROM mark WHERE studentId = studentId;
         SET count_deleted = count_deleted + 1;
     END WHILE;
     SET num_deleted = count_deleted;
